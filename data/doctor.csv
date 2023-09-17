@@ -1,7 +1,8 @@
 No;NIP;Nama Dokter;Spesialisasi;Hari Praktik;Jam Praktik;Biaya
-1;10001;dr. Iwan Prasetyo;Dokter Umum;Senin, Rabu;09:00-12:00;150000
-2;20002;dr. Putri Sarasvati;Dokter Anak;Selasa, Kamis;10:00-14:00;200000
-3;40004;dr. Adi Nugroho;Dokter Mata;Rabu, Jumat;13:00-15:00;230000
-4;50005;dr. Rini Astuti;Dokter Gigi;Senin, Kamis;14:00-17:00;220000
-5;60006;dr. Luna Saraswati;Dokter Kulit;Selasa, Jumat;10:00-13:00;240000
-6;90009;dr. Ani Sumiyati;Dokter Umum;Senin, Selasa;08:00-11:00;130000
+1;10001;dr. Iwan Prasetyo;Dokter Umum;Senin, Rabu;09:00 s/d 12:00 WIB;150000
+2;20002;dr. Putri Sarasvati;Dokter Anak;Selasa, Kamis;10:00 s/d 14:00 WIB;200000
+3;30003;dr. Rina Agustina;Dokter THT;Rabu, Jumat;08:00 s/d 11:00 WIB;250000
+4;40004;dr. Adi Nugroho;Dokter Mata;Rabu, Jumat;13:00 s/d 15:00 WIB;230000
+5;50005;dr. Rini Astuti;Dokter Gigi;Senin, Kamis;14:00 s/d 15:00 WIB;220000
+6;60006;dr. Luna Saraswati;Dokter Kulit;Selasa, Jumat;10:00 s/d 13:00 WIB;240000
+7;90009;dr. Ani Sumiyati;Dokter Umum;Senin, Selasa;08:00 s/d 11:00 WIB;130000

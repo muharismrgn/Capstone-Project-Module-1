@@ -45,6 +45,7 @@ def add_patient(database):
         # Input patient address
         address = pyip.inputStr(prompt='Masukan Alamat: ', applyFunc=lambda x: x.title())
         # Length of phone number must be between 11 and 13
+        phone=''
         while len(phone) not in [11,12,13]:
             # Input patient phone number
             phone = '0' + str(pyip.inputInt(prompt='Masukan Nomor Telepon: '))
@@ -143,6 +144,7 @@ def update_patient(database):
         nik = pyip.inputInt(prompt='Masukan Nomor Induk Kependudukan(NIK) yang ingin diubah: ')
         if len(str(nik)) != 5: print('Panjang Nomor Induk Kependudukan (NIK) harus 5 digit!')
     if nik in database:
+        print(database)
         # Show found data
         print(tabl.tabulate([database[nik]], database["column"], tablefmt='psql'), '\n')
         # Confirm to continue update
@@ -194,7 +196,7 @@ def update_patient(database):
                 # Update new change 
                 database[nik][choice.index(response)+1] = new
                 # Change key in dict database
-                # print(f'before database change : \n{database}')
+                print(f'before database change : \n{database}')
                 if response == 'NIK':
                     # Store database keys dan values into list
                     keys = list(database.keys())
@@ -205,18 +207,17 @@ def update_patient(database):
                     keys[index]=new
                     # Recreate dict database from keys list as keys and vals list as values
                     database = {keys[i]: vals[i] for i in range(len(keys))}
-                    # print(f'latest database change : \n{database}')
-                    print('Data berhasil diubah')
-                # Ask to change another one
-                again = pyip.inputYesNo(prompt='Apakah anda ingin mengubah data lagi (y/n)?: ')
-                if again == 'yes':
-                    # Call self function with new database args
-                    return update_patient(database)
-                return database
+                print(f'latest database change : \n{database}')
+                print('Data berhasil diubah')
+            # Ask to change another one
+            again = pyip.inputYesNo(prompt='Apakah anda ingin mengubah data lagi (y/n)?: ')
+            if again == 'yes':
+                # Call self function with new database args
+                update_patient(database)
     else:
-        # print(f'database change on else: \n{database}') #bug report
+        print(f'database change on else: \n{database}') #bug report
         print('NIK belum terdaftar!') 
-        return database
+    return database
     
 def delete_patient(database):
     """Function to remove patient data entry from the database

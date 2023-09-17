@@ -1,7 +1,7 @@
 import os, csv
 import pyinputplus as pyip
 import tabulate as tabl
-from datetime import date, timedelta
+from datetime import date, timedelta, time
 
 def clear_screen():
     """
@@ -40,7 +40,7 @@ def add_doctor(database):
         # Practice day must be less than or equal to 2
         while len(practice_day) < 2:
             # Choice practice day
-            choice = ['Senin', 'Selasa', 'Rabu', 'Kamis']
+            choice = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat']
             # Input practice day
             day = pyip.inputChoice(prompt='Masukan Hari Praktik Maks 2: ', choices=choice)
             # Check day input in variable practice days
@@ -55,17 +55,27 @@ def add_doctor(database):
             if len(practice_day) == 2:
                 break
             # Ask to add another practice days
-            response = pyip.inputYesNo(prompt='Apakah ingin memasukan hari praktik lagi (y/n)?')
-            if response == 'no':
+            more = pyip.inputYesNo(prompt='Apakah ingin memasukan hari praktik lagi (y/n)?')
+            if more == 'no':
                 break
         # Formating practice days for table display
         practice_day = ', '.join(practice_day)
         # Input paractice hours start
-        practice_hours_start = pyip.inputDatetime(prompt='Masukkan Jam Mulai Praktik (contoh 08:00): ', formats=['%H:%M'])
+        while True:
+            practice_hours_start = pyip.inputDatetime(prompt='Masukkan Jam Mulai Praktik (contoh 08:00): ', formats=['%H:%M']).time()
+            if practice_hours_start < time(7,0):
+                print('Jam kerja mulai pukul 07:00 WIB')
+            else:
+                break
         # Input paractice hours End
-        practice_hours_end = pyip.inputDatetime(prompt='Masukkan Jam Praktik Selesai (contoh 16:00): ', formats=['%H:%M'])
+        while True:
+            practice_hours_end = pyip.inputDatetime(prompt='Masukkan Jam Praktik Selesai (contoh 14:00): ', formats=['%H:%M']).time()
+            if practice_hours_end > time(15, 0):
+                print('Jam kerja berakhir pukul 15:00 WIB')
+            else:
+                break
         # Practice hours formatting for table display
-        practice_hours = str(practice_hours_start.strftime('%H:%M')) + '-' + str(practice_hours_end.strftime('%H:%M'))
+        practice_hours = f"{practice_hours_start.strftime('%H:%M')} s/d {practice_hours_end.strftime('%H:%M')} WIB"
         # Input new doctor price
         price = pyip.inputInt(prompt='Masukan Biaya Penanganan: ')
         # Confirm to save new data
@@ -183,14 +193,13 @@ def update_doctor(database):
                 # Practice day must be less than or equal to 2
                 while len(practice_day) < 2:
                     # Choice practice day
-                    choice = ['Senin', 'Selasa', 'Rabu', 'Kamis']
+                    day_list = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat']
                     # Input practice day
-                    day = pyip.inputChoice(prompt='Masukan Hari Praktik Maks 2: ', choices=choice)
+                    day = pyip.inputChoice(prompt='Masukan Hari Praktik (Maks 2): ', choices=day_list)
                     # Check day input in variable practice days
                     if day in practice_day:
                         # If day in practice day already exist
                         print('Hari praktik sudah dimasukan!')
-                        continue
                     else:
                         # Append to variable practice days
                         practice_day.append(day)
@@ -198,19 +207,29 @@ def update_doctor(database):
                     if len(practice_day) == 2:
                         break
                     # Ask to add another practice days
-                    response = pyip.inputYesNo(prompt='Apakah ingin memasukan hari praktik lagi (y/n)?')
-                    if response == 'no':
+                    more = pyip.inputYesNo(prompt='Apakah ingin memasukan hari praktik lagi (y/n)?')
+                    if more == 'no':
                         break
                 # Formating practice days for table display
                 new = ', '.join(practice_day)
             # Input new practice hours
             elif response == 'Jam Praktik':
                 # Input paractice hours start
-                practice_hours_start = pyip.inputDatetime(prompt='Masukkan Jam Mulai Praktik (contoh 08:00): ', formats=['%H:%M'])
+                while True:
+                    practice_hours_start = pyip.inputDatetime(prompt='Masukkan Jam Mulai Praktik (contoh 08:00): ', formats=['%H:%M']).time()
+                    if practice_hours_start < time(7,0):
+                        print('Jam kerja mulai pukul 07:00 WIB')
+                    else:
+                        break
                 # Input paractice hours End
-                practice_hours_end = pyip.inputDatetime(prompt='Masukkan Jam Praktik Selesai (contoh 16:00): ', formats=['%H:%M'])
+                while True:
+                    practice_hours_end = pyip.inputDatetime(prompt='Masukkan Jam Praktik Selesai (contoh 14:00): ', formats=['%H:%M']).time()
+                    if practice_hours_end > time(15, 0):
+                        print('Jam kerja berakhir pukul 15:00 WIB')
+                    else:
+                        break
                 # Practice hours formatting for table display
-                new = str(practice_hours_start.strftime('%H:%M')) + '-' + str(practice_hours_end.strftime('%H:%M'))
+                new = f"{practice_hours_start.strftime('%H:%M')} s/d {practice_hours_end.strftime('%H:%M')} WIB"
             elif response == 'Biaya':
                 # Input new doctor price
                 new = pyip.inputInt(prompt='Masukan Biaya Penanganan: ')
@@ -228,12 +247,12 @@ def update_doctor(database):
                     vals = list(database.values())
                     # Get NIP index in keys list
                     index = keys.index(nip)
-                     # Change old NIP value to new vale
+                     # Change old NIP value to new value
                     keys[index]=new
                      # Recreate dict database from keys list as keys and vals list as values
                     database = {keys[i]: vals[i] for i in range(len(keys))}
                     # print(f'latest database change : \n{database}')
-                    print('Data berhasil diubah')
+                print('Data berhasil diubah')
                 # Ask to change another one
                 again = pyip.inputYesNo(prompt='Apakah anda ingin mengubah data lagi (y/n)?: ')
                 if again == 'yes':

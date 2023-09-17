@@ -237,7 +237,7 @@ def sort_date(database):
             datetime: day and practice time
         """        
         # Extract the date and time from the data entry and combine them
-        date_str = param[8].split(', ')[1] + ' ' + param[9].split('-')[0]
+        date_str = param[8].split(', ')[1] + ' ' + param[9].split()[0]
         # Convert the combined string into a datetime object
         return datetime.strptime(date_str, '%d-%m-%Y %H:%M')
     
