@@ -7,7 +7,7 @@ The Hospital Management and Scheduling System is a digital platform designed to 
 - **Create**: Allows administrators to input new data entries, be it patient records, doctor profiles, or consultation schedules, ensuring the database remains up-to-date with the latest information.
 - **Read**: Facilitates access to the stored information. Users can view patient details, doctor profiles, and consultation schedules, ensuring transparency and aiding in informed decision-making.
 - **Update**: Provides the capability to make modifications to existing records. If there's a change in a patient's health details, a doctor's schedule, or any other pertinent data, it can be quickly amended to reflect the most current information.
-**- Delete**: Enables administrators to remove any outdated or irrelevant data. This ensures that the database remains streamlined, holding only the most pertinent and up-to-date information.
+- **Delete**: Enables administrators to remove any outdated or irrelevant data. This ensures that the database remains streamlined, holding only the most pertinent and up-to-date information.
 
 # Usage
 This system caters to two distinct user types:
