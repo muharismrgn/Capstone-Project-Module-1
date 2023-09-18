@@ -240,7 +240,6 @@ def update_doctor(database):
             if confirm == 'yes':
                 database[nip][choice.index(response)+1] = new
                 # Change key in dict database
-                # print(f'before database change : \n{database}')
                 if response == 'NIK':
                    # Store database keys dan values into list
                     keys = list(database.keys())
@@ -251,7 +250,6 @@ def update_doctor(database):
                     keys[index]=new
                      # Recreate dict database from keys list as keys and vals list as values
                     database = {keys[i]: vals[i] for i in range(len(keys))}
-                    # print(f'latest database change : \n{database}')
                 print('Data berhasil diubah')
                 # Ask to change another one
                 again = pyip.inputYesNo(prompt='Apakah anda ingin mengubah data lagi (y/n)?: ')
@@ -260,7 +258,6 @@ def update_doctor(database):
                     return update_doctor(database)
                 return database
     else:
-        # print(f'database change on else: \n{database}') #bug report
         print('NIP belum terdaftar!')
         return database
 

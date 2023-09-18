@@ -144,7 +144,6 @@ def update_patient(database):
         nik = pyip.inputInt(prompt='Masukan Nomor Induk Kependudukan(NIK) yang ingin diubah: ')
         if len(str(nik)) != 5: print('Panjang Nomor Induk Kependudukan (NIK) harus 5 digit!')
     if nik in database:
-        print(database)
         # Show found data
         print(tabl.tabulate([database[nik]], database["column"], tablefmt='psql'), '\n')
         # Confirm to continue update
@@ -195,8 +194,7 @@ def update_patient(database):
             if confirm == 'yes':
                 # Update new change 
                 database[nik][choice.index(response)+1] = new
-                # Change key in dict database
-                print(f'before database change : \n{database}')
+                # For change key in dict database
                 if response == 'NIK':
                     # Store database keys dan values into list
                     keys = list(database.keys())
@@ -207,7 +205,6 @@ def update_patient(database):
                     keys[index]=new
                     # Recreate dict database from keys list as keys and vals list as values
                     database = {keys[i]: vals[i] for i in range(len(keys))}
-                print(f'latest database change : \n{database}')
                 print('Data berhasil diubah')
             # Ask to change another one
             again = pyip.inputYesNo(prompt='Apakah anda ingin mengubah data lagi (y/n)?: ')
@@ -215,7 +212,6 @@ def update_patient(database):
                 # Call self function with new database args
                 update_patient(database)
     else:
-        print(f'database change on else: \n{database}') #bug report
         print('NIK belum terdaftar!') 
     return database
     

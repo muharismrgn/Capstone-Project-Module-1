@@ -105,15 +105,15 @@ Pilih [1-5]
         # Update data
         elif response == f'Update Info {title}':
             while True: 
-                # Keep up to date data
-                latest_version(path, database)
                 # Update data menu
                 response = pyip.inputMenu(prompt=f'\n---- Update Info {title} ----\nPilih [1-2]\n', choices=[f'Update Info {title}', f'Kembali ke Menu Kelola {title}'], numbered=True)
                 # Clear screen
                 clear_screen()
                 if response == f'Update Info {title}':
                     # Call update function from module
-                    eval(f'{file}.update_{file}')(database)
+                    database = eval(f'{file}.update_{file}')(database)
+                    # Keep up to date data
+                    latest_version(path, database)
                 else:
                     # Back to previous menu
                     back = pyip.inputYesNo(prompt=f'Apakah anda ingin kembali ke menu kelola {title.lower()} (y/n)?')
