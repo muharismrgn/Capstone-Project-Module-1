@@ -4,6 +4,6 @@ No;ID Konsultasi;NIK;Nama Pasien;Usia;NIP;Nama Dokter;Spesialis;Hari, Tanggal Ko
 3;DGRIEK0567;34567;Eko Pratama;31;50005;dr. Rini Astuti;Dokter Gigi;Senin, 18-09-2023;14:00 s/d 15:00 WIB;Dibatalkan;220000;1
 4;DUIWRI0178;45678;Rizki Ramadhan;30;10001;dr. Iwan Prasetyo;Dokter Umum;Rabu, 20-09-2023;09:00 s/d 12:00 WIB;Terjadwalkan;150000;1
 5;DAANAY0243;76543;Ayu Lestari;26;20002;dr. Putri Sarasvati;Dokter Anak;Selasa, 19-09-2023;10:00 s/d 14:00 WIB;Terjadwalkan;200000;1
-6;DTRIRE0332;65432;Retno Dewi;27;30003;dr. Rina Agustina;Dokter THT;Jumat, 22-09-2023;08:00 s/d 11:00 WIB;Menunggu Konfirmasi;250000;1
+6;DTRIRE0332;65432;Retno Dewi;27;30003;dr. Rina Agustina;Dokter THT;Jumat, 22-09-2023;08:00 s/d 11:00 WIB;Menunggu Konfirmasi;250000;2
 7;DPDARAH0988;88888;Ahmad Maulana;62;90009;dr. Ariyanto Nugriho;Dokter Penyakit Dalam;Rabu, 20-09-2023;07:00 s/d 14:00 WIB;Terjadwalkan;230000;1
 8;DTRIAH0345;12345;Ahmad Surya;28;30003;dr. Rina Agustina;Dokter THT;Rabu, 18-10-2023;08:00 s/d 11:00 WIB;Menunggu Konfirmasi;250000;1

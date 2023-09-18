@@ -339,7 +339,8 @@ def update_consultation(database):
             continue
         elif val[0] == num:
             # Display the current data of the selected entry
-            print(tabl.tabulate([database[key]], database['column'], tablefmt='psql'), '\n')
+            selected_entry = tabl.tabulate([database[key]], database['column'], tablefmt='psql')
+            print(selected_entry, '\n')
             # Assign the key to key_update for update data later
             key_update = key
             # Unpack the current data of the selected entry for get preious value
@@ -359,11 +360,12 @@ def update_consultation(database):
     
         if continue_update == 'yes':
             print('Lewati atau kosongkan input jika tidak ingin merubah data!\n')
-            
+            # Display the current data
+            print('Data Sebelumnya')
+            print(selected_entry, '\n')
             # Update the patient's NIK
             while True:
-                # Display the current NIK and name
-                print(f'Data sebelumnya : {patient_name} - {age} Tahun')
+                # Input new NIK
                 new_nik = pyip.inputInt(prompt='Masukan Nomor Induk Kependudukan(NIK) Pasien yang Baru: ', blank=True)
                 # Call function to  get new value
                 new_nik = blank_value(nik, new_nik)
@@ -381,7 +383,6 @@ def update_consultation(database):
                     # New value not exist in patient database
                     print('NIK belum terdaftar!')
             while True:
-                print(f'Data sebelumnya: {doctor_name} - {specialization}')
                 # Input and validate doctor's NIP
                 new_nip = pyip.inputInt(prompt='Masukan Nomor Induk Pegawai(NIP) Dokter yang Baru: ', blank=True)
                 new_nip = blank_value(nip, new_nip)
@@ -398,7 +399,6 @@ def update_consultation(database):
                 else:
                     print('NIP belum terdaftar!')
             while True:
-                print(f'Data sebelumnya: {get_idn_dayname(date)}, {date.strftime("%d-%m-%Y")}')
                 # Input and validate consultation date
                 new_date = pyip.inputDate(prompt='Masukan Tanggal Konsultasi (contoh :01-01-2023) yang Baru: ', formats = ('%d-%m-%Y',), blank=True)
                 # Function to check blank value
@@ -424,22 +424,19 @@ def update_consultation(database):
             new_consult_status=''
             if new_date < new_date.today():
                 choice = ['Dibatalkan', 'Selesai']
-                print(f'Status sebelumnya : {consult_status}')
-                new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi: \n', choices=choice, numbered=True, blank=True)
+                new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi yang Baru: \n', choices=choice, numbered=True, blank=True)
                 new_consult_status = blank_value(consult_status, new_consult_status)
                 # If consultation date is passed queue is none
                 queue = None
             elif new_date > new_date.today():
                 choice = ['Menunggu Konfirmasi', 'Terjadwalkan', 'Dibatalkan']
-                print(f'Status sebelumnya : {consult_status}')
-                new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi: \n', choices=choice, numbered=True, blank=True)
+                new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi yang Baru: \n', choices=choice, numbered=True, blank=True)
                 new_consult_status = blank_value(consult_status, new_consult_status)
                 # Generate queue from function
                 queue = get_queue(database, new_nip, consult_day)
             else:
                 choice = ['Terjadwalkan', 'Dibatalkan', 'Selesai']
-                print(f'Status sebelumnya : {consult_status}')
-                new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi: \n', choices=choice, numbered=True, blank=True)
+                new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi yang Baru: \n', choices=choice, numbered=True, blank=True)
                 new_consult_status = blank_value(consult_status, new_consult_status)
                 # Generate queue from function
                 queue = get_queue(database, new_nip, consult_day)
@@ -452,7 +449,7 @@ def update_consultation(database):
             clear_screen()
             if confirm == 'yes':
                 database[key_update] = [idx, consult_id, new_nik, patient_name, age, new_nip, doctor_name, specialization, consult_day, consult_time, new_consult_status, price, queue]
-                
+                print('Data berhasil diubah')
     else:
         print('Nomer/indeks tidak ada')
     return database
