@@ -21,9 +21,36 @@ This system caters to two distinct user types:
   - View the scheduled consultations set between them and their doctors.
     
 # Installation
-1. Clone the repository: git clone https://github.com/muharismrgn/Capstone-Project-Module1.git
-2. Install dependencies: npm install (or pip install -r requirements.txt for Python projects).
-3. Run the application: npm start (or python app.py).
+User
+To get this project, you can clone it by running the following code:
+```bash
+git@github.com:muharismrgn/Capstone-Project-Module-1.git
+```
+Then install some additional tools by running the following code:
+```bash
+make install
+make build
+```
+Now you can run it through the following command:
+```bash
+make run
+```
+# Project Organization
 
+The directory structure of IndoMarket project looks like this:
+```bash
+├── README.md          <- The top-level README for developers using this project.
+│
+├── data               <- Patient, doctor, consultation schedulling database
+│
+├── docs               <- The document will consist of a detailed presentation.
+│
+├── src                <- Source code for use in this project.
+│
+├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
+│                         generated with `pip freeze > requirements.txt`
+│
+└── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
+```
 # Contribute
-If you'd like to contribute to the apps, check out https://github.com/muharismrgn/Capstone-Project-Module1, or feel free to contact me.
+If you'd like to contribute to the apps, check out https://github.com/muharismrgn/Capstone-Project-Module-1, or feel free to contact me.
