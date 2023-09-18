@@ -21,7 +21,6 @@ This system caters to two distinct user types:
   - View the scheduled consultations set between them and their doctors.
     
 # Installation
-User
 To get this project, you can clone it by running the following code:
 ```bash
 git@github.com:muharismrgn/Capstone-Project-Module-1.git
