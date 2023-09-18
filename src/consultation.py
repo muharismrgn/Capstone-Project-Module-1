@@ -161,7 +161,7 @@ def add_consultation(database):
         dayname = get_idn_dayname(date)
         # Check if date is within the allowed range
         if date < (date.today() - timedelta(days=30)) or date > (date.today() + timedelta(days=30)):
-            print('Tanggal konsultasi tidak bisa lebih dari 7 hari sebelum/setelah hari ini!')
+            print('Tanggal konsultasi tidak bisa lebih dari 30 hari sebelum/setelah dari hari ini!')
         # Check if date matches doctor's schedule
         elif dayname not in list(doctor_db[nip])[4].split(', '):
             print('Tanggal konsultasi tidak sesuai dengan jadwal dokter!')
@@ -408,7 +408,7 @@ def update_consultation(database):
                 dayname = get_idn_dayname(new_date)
                 # Check if date is within the allowed range
                 if new_date < (new_date.today() - timedelta(days=30)) or new_date > (new_date.today() + timedelta(days=30)):
-                    print('Tanggal konsultasi tidak bisa lebih dari 7 hari sebelum/setelah hari ini!')
+                    print('Tanggal konsultasi tidak bisa lebih dari 30 hari sebelum/setelah hari ini!')
                 # Check if date matches doctor's schedule
                 elif dayname not in list(doctor_db[new_nip])[4].split(', '):
                     print('Tanggal konsultasi tidak sesuai dengan jadwal dokter!')
