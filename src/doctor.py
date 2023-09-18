@@ -55,7 +55,7 @@ def add_doctor(database):
             if len(practice_day) == 2:
                 break
             # Ask to add another practice days
-            more = pyip.inputYesNo(prompt='Apakah ingin memasukan hari praktik lagi (y/n)?')
+            more = pyip.inputYesNo(prompt='Apakah ingin memasukan hari praktik lagi (yes/no)?')
             if more == 'no':
                 break
         # Formating practice days for table display
@@ -207,7 +207,7 @@ def update_doctor(database):
                     if len(practice_day) == 2:
                         break
                     # Ask to add another practice days
-                    more = pyip.inputYesNo(prompt='Apakah ingin memasukan hari praktik lagi (y/n)?')
+                    more = pyip.inputYesNo(prompt='Apakah ingin memasukan hari praktik lagi (yes/no)?')
                     if more == 'no':
                         break
                 # Formating practice days for table display
@@ -240,7 +240,7 @@ def update_doctor(database):
             if confirm == 'yes':
                 database[nip][choice.index(response)+1] = new
                 # Change key in dict database
-                if response == 'NIK':
+                if response == 'NIP':
                    # Store database keys dan values into list
                     keys = list(database.keys())
                     vals = list(database.values())
@@ -251,15 +251,14 @@ def update_doctor(database):
                      # Recreate dict database from keys list as keys and vals list as values
                     database = {keys[i]: vals[i] for i in range(len(keys))}
                 print('Data berhasil diubah')
-                # Ask to change another one
-                again = pyip.inputYesNo(prompt='Apakah anda ingin mengubah data lagi (y/n)?: ')
-                if again == 'yes':
-                    # Call self function with new database args
-                    return update_doctor(database)
-                return database
+            # Ask to change another one
+            again = pyip.inputYesNo(prompt='Apakah anda ingin mengubah data lagi (yes/no)?: ')
+            if again == 'yes':
+                # Call self function with new database args
+                update_doctor(database)
     else:
         print('NIP belum terdaftar!')
-        return database
+    return database
 
 def delete_doctor(database):
     """Function to remove data doctor from the database
@@ -323,7 +322,7 @@ Pilih [1-{len(choice)}]
             search_doctor(database, 'Spesialisasi')
         # Back to previous menu
         else :
-            back = pyip.inputYesNo(prompt='Apakah anda ingin kembali ke menu kelola dokter (y/n)?')
+            back = pyip.inputYesNo(prompt='Apakah anda ingin kembali ke menu kelola dokter (yes/no)?')
             clear_screen()
             if back == 'yes':
                 break

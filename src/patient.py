@@ -188,7 +188,7 @@ def update_patient(database):
                     if len(new) > 13: print('Panjang No. Telepon tidak bisa lebih dari 13!')
                     elif len(new) < 11: print('Panjang No. Telepon tidak bisa kurang dari 11!')
             # Confirm to save new change
-            confirm = pyip.inputYesNo(prompt='Apakah anda ingin menyimpan data ini (y/n)?: ')
+            confirm = pyip.inputYesNo(prompt='Apakah anda ingin menyimpan data ini (yes/no)?: ')
             # Clear screen after response
             clear_screen()
             if confirm == 'yes':
@@ -207,7 +207,7 @@ def update_patient(database):
                     database = {keys[i]: vals[i] for i in range(len(keys))}
                 print('Data berhasil diubah')
             # Ask to change another one
-            again = pyip.inputYesNo(prompt='Apakah anda ingin mengubah data lagi (y/n)?: ')
+            again = pyip.inputYesNo(prompt='Apakah anda ingin mengubah data lagi (yes/no)?: ')
             if again == 'yes':
                 # Call self function with new database args
                 update_patient(database)
@@ -286,7 +286,7 @@ Pilih [1-{len(choice)}]
             search_patient(database, 'No. Telepon')
         # Back to previous menu
         else :
-            back = pyip.inputYesNo(prompt='Apakah anda ingin kembali ke menu kelola pasien (y/n)?')
+            back = pyip.inputYesNo(prompt='Apakah anda ingin kembali ke menu kelola pasien (yes/no)?')
             clear_screen()
             if back == 'yes':
                 break

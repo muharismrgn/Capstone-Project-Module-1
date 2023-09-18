@@ -93,7 +93,7 @@ Pilih [1-5]
                     # Call add function from module
                     eval(f'{file}.add_{file}')(database)
                 else:
-                    back = pyip.inputYesNo(prompt=f'Apakah anda ingin kembali ke menu kelola {title.lower()} (y/n)?')
+                    back = pyip.inputYesNo(prompt=f'Apakah anda ingin kembali ke menu kelola {title.lower()} (yes/no)?')
                     # Clear screen
                     clear_screen()
                     if back == 'yes':
@@ -116,7 +116,7 @@ Pilih [1-5]
                     latest_version(path, database)
                 else:
                     # Back to previous menu
-                    back = pyip.inputYesNo(prompt=f'Apakah anda ingin kembali ke menu kelola {title.lower()} (y/n)?')
+                    back = pyip.inputYesNo(prompt=f'Apakah anda ingin kembali ke menu kelola {title.lower()} (yes/no)?')
                      # Clear screen
                     clear_screen()
                     if back == 'yes':
@@ -135,7 +135,7 @@ Pilih [1-5]
                     eval(f'{file}.delete_{file}')(database)
                 else:
                     # Back to previous menu
-                    back = pyip.inputYesNo(prompt=f'Apakah anda ingin kembali ke menu kelola {title.lower()}(y/n)?')
+                    back = pyip.inputYesNo(prompt=f'Apakah anda ingin kembali ke menu kelola {title.lower()}(yes/no)?')
                      # Clear screen
                     clear_screen()
                     if back == 'yes':
@@ -143,7 +143,7 @@ Pilih [1-5]
         # Back to main menu
         else:
             # Confirm back to main menu
-            back = pyip.inputYesNo(prompt='Apakah anda ingin kembali ke main menu (y/n)?')
+            back = pyip.inputYesNo(prompt='Apakah anda ingin kembali ke main menu (yes/no)?')
              # Clear screen
             clear_screen()
             if back == 'yes':
@@ -216,7 +216,7 @@ Pilih [1-4]
             # Exit program
             else :
                 # Confirm to exit program
-                exit = pyip.inputYesNo(prompt='Apakah anda ingin keluar (y/n)?')
+                exit = pyip.inputYesNo(prompt='Apakah anda ingin keluar (yes/no)?')
                 # Clear screen
                 clear_screen()
                 if exit == 'yes':
@@ -258,7 +258,7 @@ Pilih [1-4]
             # Exit program
             else :
                 # Confirm to exit program
-                exit = pyip.inputYesNo(prompt='Apakah anda ingin keluar (y/n)?')
+                exit = pyip.inputYesNo(prompt='Apakah anda ingin keluar (yes/no)?')
                 # Clear screen
                 clear_screen()
                 if exit == 'yes':

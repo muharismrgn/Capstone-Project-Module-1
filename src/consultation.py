@@ -160,7 +160,7 @@ def add_consultation(database):
         # Function to get indonesia dayname
         dayname = get_idn_dayname(date)
         # Check if date is within the allowed range
-        if date < (date.today() - timedelta(days=7)) or date > (date.today() + timedelta(days=7)):
+        if date < (date.today() - timedelta(days=30)) or date > (date.today() + timedelta(days=30)):
             print('Tanggal konsultasi tidak bisa lebih dari 7 hari sebelum/setelah hari ini!')
         # Check if date matches doctor's schedule
         elif dayname not in list(doctor_db[nip])[4].split(', '):
@@ -324,8 +324,14 @@ def update_consultation(database):
     # Initialize a variable to store the key for update
     key_update = None
 
+    # Show database
+    show_consultation(database)
+
     # Input the index number they want to update
     num = pyip.inputInt(prompt='Masukan Nomer atau indeks yang ingin diubah: ')
+
+    # Clear screem
+    clear_screen()
     
     # Search for the entry with the given index number
     for key, val in database.items():
@@ -401,7 +407,7 @@ def update_consultation(database):
                 # Function to get dayname in bahasa
                 dayname = get_idn_dayname(new_date)
                 # Check if date is within the allowed range
-                if new_date < (new_date.today() - timedelta(days=7)) or new_date > (new_date.today() + timedelta(days=7)):
+                if new_date < (new_date.today() - timedelta(days=30)) or new_date > (new_date.today() + timedelta(days=30)):
                     print('Tanggal konsultasi tidak bisa lebih dari 7 hari sebelum/setelah hari ini!')
                 # Check if date matches doctor's schedule
                 elif dayname not in list(doctor_db[new_nip])[4].split(', '):
@@ -415,34 +421,27 @@ def update_consultation(database):
             # Get the doctor's consultation time from the doctor database
             consult_time = list(doctor_db[new_nip])[5]
             # Input consultation status and determine the queue number
+            # while True:
+            new_consult_status=''
             if new_date < new_date.today():
                 choice = ['Dibatalkan', 'Selesai']
-                while consult_status not in choice :
-                    print(f'Status sebelumnya : {consult_status}')
-                    new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi: \n', choices=choice, numbered=True, blank=True)
-                    consult_status = blank_value(consult_status, new_consult_status)
-                    if consult_status not in choice:
-                        print("Masukan pilihan yang sesuai dengan daftar yang diberikan.")
+                print(f'Status sebelumnya : {consult_status}')
+                new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi: \n', choices=choice, numbered=True, blank=True)
+                new_consult_status = blank_value(consult_status, new_consult_status)
                 # If consultation date is passed queue is none
                 queue = None
             elif new_date > new_date.today():
                 choice = ['Menunggu Konfirmasi', 'Terjadwalkan', 'Dibatalkan']
-                while consult_status not in choice :
-                    print(f'Status sebelumnya : {consult_status}')
-                    new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi: \n', choices=choice, numbered=True, blank=True)
-                    consult_status = blank_value(consult_status, new_consult_status)
-                    if consult_status not in choice:
-                        print("Masukan pilihan yang sesuai dengan daftar yang diberikan.")
+                print(f'Status sebelumnya : {consult_status}')
+                new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi: \n', choices=choice, numbered=True, blank=True)
+                new_consult_status = blank_value(consult_status, new_consult_status)
                 # Generate queue from function
                 queue = get_queue(database, new_nip, consult_day)
             else:
                 choice = ['Terjadwalkan', 'Dibatalkan', 'Selesai']
-                while consult_status not in choice :
-                    print(f'Status sebelumnya : {consult_status}')
-                    new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi: \n', choices=choice, numbered=True, blank=True)
-                    consult_status = blank_value(consult_status, new_consult_status)
-                    if consult_status not in choice:
-                        print("Masukan pilihan yang sesuai dengan daftar yang diberikan.")
+                print(f'Status sebelumnya : {consult_status}')
+                new_consult_status = pyip.inputMenu(prompt='Masukan Status Konsultasi: \n', choices=choice, numbered=True, blank=True)
+                new_consult_status = blank_value(consult_status, new_consult_status)
                 # Generate queue from function
                 queue = get_queue(database, new_nip, consult_day)
             # Get consultation price from the doctor database
@@ -453,7 +452,7 @@ def update_consultation(database):
             confirm = pyip.inputYesNo(prompt='Apakah anda ingin menyimpan data ini (yes/no)?: ')
             clear_screen()
             if confirm == 'yes':
-                database[key_update] = [idx, consult_id, new_nik, patient_name, age, new_nip, doctor_name, specialization, consult_day, consult_time, consult_status, price, queue]
+                database[key_update] = [idx, consult_id, new_nik, patient_name, age, new_nip, doctor_name, specialization, consult_day, consult_time, new_consult_status, price, queue]
                 
     else:
         print('Nomer/indeks tidak ada')
@@ -468,8 +467,12 @@ def delete_consultation(database):
     Returns:
         dict: Latest database
     """    
+    # Show database
+    show_consultation(database)
     # Input number/index for delete operation
     num = pyip.inputInt(prompt='Masukan No. yang ingin dihapus: ')
+    # Clear screen
+    clear_screen()
     # Init key for delete
     key_del = None
     # Search for the entry with the given index number
@@ -544,7 +547,7 @@ Pilih [1-{len(choice)}]]
             sort_date(database)
         # Back to previous menu
         else :
-            back = pyip.inputYesNo(prompt='Apakah anda ingin kembali ke menu kelola pasien (y/n)?')
+            back = pyip.inputYesNo(prompt='Apakah anda ingin kembali ke menu kelola pasien (yes/no)?')
             clear_screen()
             if back == 'yes':
                 break
