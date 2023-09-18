@@ -382,7 +382,6 @@ def update_consultation(database):
                     print('NIK belum terdaftar!')
             while True:
                 print(f'Data sebelumnya: {doctor_name} - {specialization}')
-                print(f'Jadwal Praktik : {list(doctor_db[nip])[4]}')
                 # Input and validate doctor's NIP
                 new_nip = pyip.inputInt(prompt='Masukan Nomor Induk Pegawai(NIP) Dokter yang Baru: ', blank=True)
                 new_nip = blank_value(nip, new_nip)
