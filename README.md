@@ -36,7 +36,7 @@ make run
 ```
 # Project Organization
 
-The directory structure of IndoMarket project looks like this:
+The directory structure of this project looks like this:
 ```bash
 ├── README.md          <- The top-level README for developers using this project.
 │
